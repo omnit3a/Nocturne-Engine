@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <lua_headers.h>
@@ -93,6 +94,41 @@ int NE_draw_offset_texture(lua_State * lState){
 	return 0;
 }
 
+TTF_Font * current_font;
+int NE_load_ttf(lua_State * lState){
+	const char * font_path = lua_tostring(lState, 1);
+
+	current_font = TTF_OpenFont(font_path, 16);
+	return 0;
+}
+
+int NE_draw_string(lua_State * lState){
+	SDL_Surface * surface;
+	SDL_Texture * texture;
+	int width;
+	int height;
+	const char * string = lua_tostring(lState, 1);
+	const int x = (int) lua_tonumber(lState, 2);
+	const int y = (int) lua_tonumber(lState, 3);
+	SDL_Color color;
+
+	color = (SDL_Color){255, 255, 255, 255};       
+	surface = TTF_RenderText_Solid(current_font, string, color);
+        texture = SDL_CreateTextureFromSurface(main_render_context.renderer, surface);
+	SDL_QueryTexture(texture, NULL, NULL, &width, &height);
+	SDL_Rect target = {
+		x * width,
+		y * height,
+		width,
+		height,
+	};
+	SDL_RenderCopy(main_render_context.renderer, texture, NULL, &target);
+
+	SDL_DestroyTexture(texture);
+	SDL_FreeSurface(surface);
+	return 0;
+}
+
 void api_register_graphics(lua_State * lState){
 	lua_register(lState, "init_renderer", NE_init_renderer);
 	lua_register(lState, "create_window", NE_create_window);
@@ -101,6 +137,8 @@ void api_register_graphics(lua_State * lState){
 	lua_register(lState, "draw_texture", NE_draw_texture);
 	lua_register(lState, "reshape_texture", NE_reshape_texture);
 	lua_register(lState, "draw_offset_texture", NE_draw_offset_texture);
+	lua_register(lState, "load_ttf", NE_load_ttf);
+	lua_register(lState, "draw_string", NE_draw_string);
 }
 
 engine_render_context_t api_get_render_context(void){

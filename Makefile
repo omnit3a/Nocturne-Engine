@@ -1,6 +1,6 @@
 # tool macros
 CC = gcc
-CLIBS = -lm -llua -ldl -lSDL2
+CLIBS = -lm -llua -ldl -lSDL2 -lSDL2_ttf
 CERROR = -Wall
 CFLAGS = $(CERROR) $(CLIBS) $(addprefix -I, $(HDR_PATH))
 LFLAGS = $(CFLAGS) -c
@@ -16,7 +16,7 @@ SRC_PATH += src/api
 SRC_PATH += $(LIB_PATH)/frozen
 
 # compile macros
-TARGET := $(BIN_PATH)/nengine
+TARGET := $(BIN_PATH)/engine-runtime
 
 # src files & obj files
 SRC := $(shell find $(SRC_PATH) -type f -name '*.c')
