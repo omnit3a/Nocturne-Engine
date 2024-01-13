@@ -62,8 +62,7 @@ int NE_is_key_held(lua_State * lState){
 	keycode = SDL_GetKeyFromName(key_name);
 	scancode = SDL_GetScancodeFromKey(keycode);
 
-	SDL_PollEvent(&event);
-	
+	SDL_PollEvent(&event);	
 	key_states = SDL_GetKeyboardState(NULL);
 	if (key_states[scancode]){
 		lua_pushboolean(lState, 1);

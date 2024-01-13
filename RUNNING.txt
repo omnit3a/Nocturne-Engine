@@ -1,0 +1,4 @@
+To run the example project, first compile the engine using "make".
+
+Then, enter the "example" directory, and run "../bin/nengine".
+To exit the example program, press Left Shift+Escape
