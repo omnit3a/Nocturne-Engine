@@ -78,6 +78,10 @@ void engine_register_texture(engine_render_context_t * context, char * path, int
 	textures[texture_count - 1].surface = SDL_LoadBMP(path);
 	textures[texture_count - 1].texture = SDL_CreateTextureFromSurface(context->renderer,
 									   textures[texture_count - 1].surface);
+	textures[texture_count - 1].x = 0;
+	textures[texture_count - 1].y = 0;
+	textures[texture_count - 1].width = 0;
+	textures[texture_count - 1].height = 0;
 	textures[texture_count - 1].texture_id = id;
 	textures = realloc(textures, sizeof(engine_texture_t) + texture_count);
 }
@@ -93,4 +97,16 @@ engine_texture_t engine_get_texture(int id){
 		}
 	}
 	return (engine_texture_t){0};
+}
+
+void engine_reshape_texture(int id, int x, int y, int w, int h){
+	for (int texture = 0 ; texture < texture_count ; texture++){
+		if (textures[texture].texture_id == id){
+			textures[texture].x = x;
+			textures[texture].y = y;
+			textures[texture].width = w;
+			textures[texture].height = h;
+			return;
+		}
+	}	
 }
