@@ -67,3 +67,30 @@ void engine_destroy_render_context(engine_render_context_t * context){
 	SDL_DestroyRenderer(context->renderer);
 	SDL_Quit();
 }
+
+engine_texture_t * textures;
+int texture_count = 1;
+
+void engine_register_texture(engine_render_context_t * context, char * path, int id){
+	if (textures == NULL){
+	        textures = malloc(sizeof(engine_texture_t));
+	}
+	textures[texture_count - 1].surface = SDL_LoadBMP(path);
+	textures[texture_count - 1].texture = SDL_CreateTextureFromSurface(context->renderer,
+									   textures[texture_count - 1].surface);
+	textures[texture_count - 1].texture_id = id;
+	textures = realloc(textures, sizeof(engine_texture_t) + texture_count);
+}
+
+void engine_free_textures(void){
+	free(textures);
+}
+
+engine_texture_t engine_get_texture(int id){
+	for (int texture = 0 ; texture < texture_count ; texture++){
+		if (textures[texture].texture_id == id){
+			return textures[texture];
+		}
+	}
+	return (engine_texture_t){0};
+}

@@ -1,29 +1,17 @@
 function init()
    init_renderer()
-   create_window("Example Project", 16, 16)
+   create_window("Example Project", 256, 256)
 end
 
-x = 0
-y = 8
-
 function main()
-   running = true
-   while running do
-      if (is_key_held("Escape") and is_key_held("Left Shift")) then
-	 running = false
-      end
-
-      if is_key_held("Left") then
-	 x = x - 1
-      end
-
-      if is_key_held("Right") then
-	 x = x + 1
-      end
-
-      draw_pixel(x, y, 255, 255, 255)
+   while true do
+      if (is_key_held("Escape")) then
+	 break
+      end	 
+      
+      id = load_bmp("default.bmp", 1)
+      draw_texture(id)
       
       redraw_window()
    end
-   destroy_window()
 end

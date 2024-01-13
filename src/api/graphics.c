@@ -31,20 +31,21 @@ int NE_redraw_window(lua_State * lState){
 	return 0;
 }
 
-int NE_destroy_window(lua_State * lState){
-	engine_destroy_render_context(&main_render_context);
-	return 0;
+int NE_load_bmp(lua_State * lState){
+	const char * path = lua_tostring(lState, 1);
+	const int texture_id = (int) lua_tonumber(lState, 2);
+	
+	engine_register_texture(&main_render_context, (char *)path, texture_id);
+	lua_pushnumber(lState, texture_id);
+	return 1;
 }
 
-int NE_draw_pixel(lua_State * lState){
-	const int x = (int) lua_tonumber(lState, 1);
-        const int y = (int) lua_tonumber(lState, 2);
-	const int red = (int) lua_tonumber(lState, 3);
-        const int green = (int) lua_tonumber(lState, 4);
-	const int blue = (int) lua_tonumber(lState, 5);
-
-	SDL_SetRenderDrawColor(main_render_context.renderer, red, green, blue, 255);
-	SDL_RenderDrawPoint(main_render_context.renderer, x, y);
+int NE_draw_texture(lua_State * lState){
+	const int texture_id = (int) lua_tonumber(lState, 1);
+	engine_texture_t texture;
+	
+	texture = engine_get_texture(texture_id);
+	SDL_RenderCopy(main_render_context.renderer, texture.texture, NULL, NULL);
 	return 0;
 }
 
@@ -52,8 +53,8 @@ void api_register_graphics(lua_State * lState){
 	lua_register(lState, "init_renderer", NE_init_renderer);
 	lua_register(lState, "create_window", NE_create_window);
 	lua_register(lState, "redraw_window", NE_redraw_window);
-	lua_register(lState, "destroy_window", NE_destroy_window);
-	lua_register(lState, "draw_pixel", NE_draw_pixel);
+	lua_register(lState, "load_bmp", NE_load_bmp);
+	lua_register(lState, "draw_texture", NE_draw_texture);
 }
 
 engine_render_context_t api_get_render_context(void){
