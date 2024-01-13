@@ -14,8 +14,8 @@ int NE_init_renderer(lua_State * lState){
 
 int NE_create_window(lua_State * lState){
         const char * title = lua_tostring(lState, 1);
-        const int width = lua_tonumber(lState, 2);
-        const int height = lua_tonumber(lState, 3);
+        const int width = (int) lua_tonumber(lState, 2);
+        const int height = (int) lua_tonumber(lState, 3);
 	engine_window_t window;
 
 	window = engine_create_window((char *)title, width, height);
