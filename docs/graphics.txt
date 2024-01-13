@@ -1,0 +1,30 @@
+Graphics API
+
+init_renderer():
+	Initializes SDL2
+
+create_window(title, width, height):
+        Creates a window with the specified title, width, and height
+
+redraw_window():
+	Redraws the current game window
+
+load_bmp(path, id):
+	Loads a ".bmp" image as a texture with the specified ID,
+	and returns the specified ID.
+
+draw_texture(id):
+	Draws the texture that has been loaded by a previous
+	"load_bmp" call. The texture is specified by the ID
+	that is passed.
+
+draw_offset_texture(id, x, y, width, height):
+        Draws a texture the same as "draw_texture()", but at an
+	offset within the texture file.
+	x and y specify the position within the texture,
+	and width and height specify the width and height of the
+	offset.
+
+reshape_texture(id, x, y, width, height):
+        Sets the x and y position of the specified texture,
+	as well as how wide and how tall to draw the texture.
