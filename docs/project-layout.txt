@@ -1,0 +1,19 @@
+Project Layout
+
+Project Data files:
+  All project metadata and config files are stored in the "nproj" directory,
+  which must be within the root directory of a project.
+
+  List of Data Files:
+   - nproj/info.json
+     Contains info about the project itself.
+     > Project name
+     > Project author
+     > Single line project description
+     > Project version string
+     > Project version ID (an integer that is associated with a specific version)
+     > Project completeness (a developer-assigned percentage which is used to
+       give a rough estimate of how complete a project is)
+
+Project Source Code Tree:
+  All projects within Nocturne Engine start running from "main.lua"
