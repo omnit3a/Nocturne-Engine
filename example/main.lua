@@ -11,4 +11,5 @@ function main()
       end
       redraw_window()
    end
+   destroy_window()
 end
