@@ -15,7 +15,7 @@ void engine_init_SDL2(void){
 }
 
 engine_window_t engine_create_window(char * title, int width, int height){
-	const Uint32 flags = SDL_WINDOW_RESIZABLE;
+	const Uint32 flags = 0;
 	engine_window_t window;
 	
 	window.window = SDL_CreateWindow(title, 0, 0, width, height, flags);

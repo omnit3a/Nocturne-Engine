@@ -1,6 +1,6 @@
 function init()
    init_renderer()
-   create_window("Game!", 256, 256)
+   create_window("Example Project", 640, 480)
 end
 
 function main()
