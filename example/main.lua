@@ -4,11 +4,10 @@ function init()
 end
 
 function main()
-   while true do
-      escape = is_key_held("Escape")
-      shift = is_key_held("Left Shift")
-      if (escape and shift) then
-	 break
+   running = true
+   while running do
+      if (is_key_held("Escape") and is_key_held("Left Shift")) then
+	 running = false
       end
       redraw_window()
    end
