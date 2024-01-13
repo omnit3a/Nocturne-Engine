@@ -6,6 +6,7 @@
 
 int NE_is_key_down(lua_State * lState);
 int NE_is_key_up(lua_State * lState);
+int NE_is_key_held(lua_State * lState);
 
 void api_register_input(lua_State * lState);
 

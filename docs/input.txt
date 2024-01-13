@@ -1,0 +1,13 @@
+Input API
+
+Visit this page for the list of keynames
+ - https://wiki.libsdl.org/SDL2/SDL_Keycode
+
+is_key_down(keyname):
+	Returns true if the specified SDL2 keyname was pressed
+
+is_key_up(keyname):
+	Returns true if the specified SDL2 keyname was released
+
+is_key_held(keyname):
+	Returns true if the specified SDL2 keyname is being held

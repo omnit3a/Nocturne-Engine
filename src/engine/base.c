@@ -29,4 +29,3 @@ void engine_call_user_main(lua_State * lState){
 	lua_getglobal(lState, "main");
 	lua_pcall(lState, 0, 0, 0);
 }
-

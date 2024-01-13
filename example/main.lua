@@ -1,11 +1,13 @@
 function init()
    init_renderer()
-   create_window("Game!", 640, 480)
+   create_window("Game!", 256, 256)
 end
 
 function main()
    while true do
-      if is_key_down("Q") then
+      escape = is_key_held("Escape")
+      shift = is_key_held("Left Shift")
+      if (escape and shift) then
 	 break
       end
       redraw_window()
