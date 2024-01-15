@@ -1,0 +1,29 @@
+Engine Runtime Documentation
+
+List of command line arguments:
+  "-v" or "--version"
+    > print the engine runtime version
+    
+  "--info" (when "nproj/info.json" can be found)
+    > prints information about the current project or about
+    the project specified with the "-d" (or "--dir") option
+
+  "-d" or "--dir"
+    > specify the project directory
+
+  "-q" or "--quiet"
+    > do not print any text to the console, with the
+      exception of fatal engine errors. all other messages
+      are silenced, including print statements called from within
+      game code.
+      
+  "--no-warnings"
+    > do not print engine warning messages
+
+  "--no-errors"
+    > do not print engine error messages (including fatal errors).
+      this option, when used in combination with the "-q" option,
+      makes the engine-runtime fully silent
+
+  "-s" or "--silent"
+    > an alias for the options "-q --no-errors"

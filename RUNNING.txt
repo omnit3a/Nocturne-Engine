@@ -1,4 +1,0 @@
-To run the example project, first compile the engine using "make".
-
-Then, enter the "example" directory, and run "../bin/engine-runtime".
-To exit the example program, press Left Shift+Escape

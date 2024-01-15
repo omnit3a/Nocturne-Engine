@@ -1,0 +1,4 @@
+How to run a project
+
+The general way to run any project is to copy the "engine-runtime" file from
+the "bin/" directory, into the project root directory, then simply run "engine-runtime"
