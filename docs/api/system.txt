@@ -19,3 +19,7 @@ print_warning(message):
 print_error(message):
 	Prints the specified message as an error. (Only works
 	without the "-e" command line option)
+
+wait_millis(millis):
+	Wait the specified amount of milliseconds before continuing
+	program execution

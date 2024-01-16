@@ -61,6 +61,12 @@ int NE_print_error(lua_State * lState){
 	return 0;
 }
 
+int NE_wait_millis(lua_State * lState){
+	const int millis = (int) lua_tonumber(lState, 1);
+	SDL_Delay(millis);
+	return 0;
+}
+
 void api_register_system(lua_State * lState){
 	lua_register(lState, "get_unix_time", NE_get_unix_time);
 	lua_register(lState, "get_sdl_ticks", NE_get_sdl_ticks);
@@ -68,4 +74,5 @@ void api_register_system(lua_State * lState){
 	lua_register(lState, "get_ticks_since", NE_get_ticks_since);
 	lua_register(lState, "print_warning", NE_print_warning);
 	lua_register(lState, "print_error", NE_print_error);
+	lua_register(lState, "wait_millis", NE_wait_millis);
 }

@@ -12,6 +12,7 @@ int NE_get_time_since(lua_State * lState);
 int NE_get_ticks_since(lua_State * lState);
 int NE_print_warning(lua_State * lState);
 int NE_print_error(lua_State * lState);
+int NE_wait_millis(lua_State * lState);
 
 void api_register_system(lua_State * lState);
 
