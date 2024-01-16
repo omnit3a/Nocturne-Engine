@@ -9,7 +9,7 @@ List of command line arguments:
 
   "-i" or "--info" (when "nproj/info.json" can be found)
     > prints information about the current project or about
-    the project specified with the "-d" (or "--dir") option
+      the project specified with the "-d" (or "--dir") option
       
   "-w" or "--no-warnings"
     > do not print engine warning messages
@@ -19,4 +19,7 @@ List of command line arguments:
 
   "-n" or "--init"
     > create a default project template within the directory
-      specified by the argumentl
+      specified by the argument
+
+  "-c" or "--credits"
+    > print credits for various parts of the engine

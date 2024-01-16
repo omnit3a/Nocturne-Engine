@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <api/system.h>
 #include <incbin/incbin.h>
 #include <cmd.h>
 
@@ -60,7 +61,6 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 				break;
 			}
 			strncpy(result.working_dir, arg, 255);			
-			printf("%s\n", result.working_dir);
 			break;
 			
 		case 'i':
@@ -75,12 +75,14 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			
 		case 'w':
 			result.no_warnings = 1;
-			set_debug_no_warnings();
+			set_debug_no_warnings(1);
+			set_system_no_warnings(1);
 			break;
 			
 		case 'e':
 			result.no_errors = 1;
-			set_debug_no_errors();
+			set_debug_no_errors(1);
+			set_system_no_errors(1);
 			break;
 
 		case 'c':

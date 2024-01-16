@@ -5,3 +5,17 @@ Visit this page for the list of keynames
 
 is_key_held(keyname):
 	Returns true if the specified SDL2 keyname is being held
+
+is_left_mouse_held():
+	Returns true if the left mouse button is being held
+
+is_right_mouse_held():
+	Returns true if the right mouse button is being held
+
+get_mouse_x_distance(x):
+	Returns the distance from the current mouse x position and
+	the specified x position ("x")
+
+get_mouse_y_distance(y):
+	Returns the distance from the current mouse y position and
+	the specified y position ("y")

@@ -11,3 +11,11 @@ get_time_since(time):
 
 get_ticks_since(tick):
 	Returns the amount of SDL ticks since the specified SDL tick
+
+print_warning(message):
+	Prints the specified message as a warning. (Only works
+	without the "-w" command line option)
+
+print_error(message):
+	Prints the specified message as an error. (Only works
+	without the "-e" command line option)

@@ -5,27 +5,23 @@ function init()
    x = 0
    y = 0
    reshape_texture(id, x, y, 54, 54)
-   time_start = get_sdl_ticks()   
 end
 
 function main()
-   while true do
-      if (is_key_held("Escape")) then
+   while true do      
+      if is_key_held("Escape") then
 	 break
       end
       
-      if (is_key_held("Right")) then
+      if is_key_held("Right") then
 	 x = x + 4
 	 reshape_texture(id, x, y, 54, 54);
       end
 
-      if (is_key_held("Left")) then
+      if is_key_held("Left") then
 	 x = x - 4
 	 reshape_texture(id, x, y, 54, 54);
       end
-
-      time = get_ticks_since(time_start)
-      print(time)
       
       draw_offset_texture(id, 0, 0, 16, 16);
       
