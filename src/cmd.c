@@ -38,7 +38,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 	
 	while (1){
 		int index = 0;
-		int opt = getopt_long(argc, argv, "vd:iwecn:",
+		int opt = getopt_long(argc, argv, "viwecd:n:",
 				      long_options, &index);
 
 		if (opt == -1){

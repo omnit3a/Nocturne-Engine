@@ -5,6 +5,7 @@ function init()
    x = 0
    y = 0
    reshape_texture(id, x, y, 54, 54)
+   time_start = get_sdl_ticks()   
 end
 
 function main()
@@ -23,6 +24,9 @@ function main()
 	 reshape_texture(id, x, y, 54, 54);
       end
 
+      time = get_ticks_since(time_start)
+      print(time)
+      
       draw_offset_texture(id, 0, 0, 16, 16);
       
       redraw_window()

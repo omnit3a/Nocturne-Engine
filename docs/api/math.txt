@@ -1,0 +1,18 @@
+Math API
+
+set_math_seed(seed):
+	Sets the seed for random number generation to "seed"
+
+set_math_seed_time():
+	Sets the seed for random number generation to the current
+	unix epoch
+
+get_math_seed():
+	Returns the current seed for random number generation
+
+get_random():
+	Returns an unbounded random integer
+
+get_random_range(min, max):
+	Returns a random number within the specified range,
+	with "min" be inclusive and "max" being exclusive

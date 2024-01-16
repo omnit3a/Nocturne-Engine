@@ -4,3 +4,5 @@ incbin Library (Allows for embedding of files into engine runtime):
  - https://github.com/graphitemaster/incbin
 LuaJIT:
  - https://github.com/LuaJIT/LuaJIT
+Perlin Noise Generation:
+ - https://github.com/czinn/perlin

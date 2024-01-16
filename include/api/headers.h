@@ -3,5 +3,7 @@
 
 #include <api/graphics.h>
 #include <api/input.h>
+#include <api/math.h>
+#include <api/system.h>
 
 #endif

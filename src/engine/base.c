@@ -14,6 +14,8 @@ lua_State * engine_init(char * entry){
 	luaL_openlibs(lState);
 	api_register_graphics(lState);
 	api_register_input(lState);
+	api_register_math(lState);
+	api_register_system(lState);
 	luaL_loadfile(lState, "main.lua");
 	lua_pcall(lState, 0, 0, 0);
 	
