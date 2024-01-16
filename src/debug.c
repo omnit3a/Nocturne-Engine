@@ -72,6 +72,13 @@ void debug_file_notremove_error(char * path){
 	fprintf(stderr, "%s: File could not be removed\n", path);
 }
 
+void debug_function_notfound_error(char * function_name){
+	if (debug_no_errors){
+		return;
+	}
+	fprintf(stderr, "%s: Function could not be found\n", function_name);
+}
+
 /* Rendering related error messages */
 void debug_sdl_init_failed_error(void){
 	if (debug_no_errors){

@@ -7,24 +7,23 @@ function init()
    reshape_texture(id, x, y, 54, 54)
 end
 
-function main()
-   while true do      
-      if is_key_held("Escape") then
-	 break
-      end
-      
-      if is_key_held("Right") then
-	 x = x + 4
-	 reshape_texture(id, x, y, 54, 54);
-      end
+local update_no = 0
 
-      if is_key_held("Left") then
-	 x = x - 4
-	 reshape_texture(id, x, y, 54, 54);
-      end
-      
-      draw_offset_texture(id, 0, 0, 16, 16);
-      
-      redraw_window()
+function update()
+   if is_key_held("Escape") then
+      os.exit()
    end
+   
+   if is_key_held("Right") then
+      x = x + 4
+      reshape_texture(id, x, y, 54, 54);
+   end
+
+   if is_key_held("Left") then
+      x = x - 4
+      reshape_texture(id, x, y, 54, 54);
+   end
+
+   draw_offset_texture(id, 0, 0, 16, 16);   
+   redraw_window()
 end

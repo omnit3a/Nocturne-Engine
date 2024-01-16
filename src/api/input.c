@@ -21,7 +21,6 @@ int NE_is_key_held(lua_State * lState){
 	key_states = SDL_GetKeyboardState(NULL);
 	if (key_states[scancode]){
 		lua_pushboolean(lState, 1);
-		SDL_Delay(100);
 		return 1;
 	}
 

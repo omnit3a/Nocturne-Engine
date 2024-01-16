@@ -2,10 +2,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <time.h>
+#include <debug.h>
 #include <lua_headers.h>
 #include <engine/sdl.h>
 #include <engine/base.h>
 #include <api/headers.h>
+
+int engine_no_warnings = 0;
+int engine_no_errors = 0;
+
+void set_engine_no_warnings(int value){
+	engine_no_warnings = value;
+}
+
+void set_engine_no_errors(int value){
+	engine_no_errors = value;
+}
 
 lua_State * engine_init(char * entry){
 	lua_State * lState;
@@ -22,12 +35,41 @@ lua_State * engine_init(char * entry){
 	return lState;
 }
 
+int does_function_exist(lua_State * lState, char * function_name){
+	lua_getglobal(lState, function_name);
+        return lua_isfunction(lState, lua_gettop(lState));
+}
+
 void engine_call_user_init(lua_State * lState){
+	if (!does_function_exist(lState, "init")){
+		debug_function_notfound_error("init()");
+		exit(1);
+	}
+	
 	lua_getglobal(lState, "init");
 	lua_pcall(lState, 0, 0, 0);
 }
 
-void engine_call_user_main(lua_State * lState){
-	lua_getglobal(lState, "main");
-	lua_pcall(lState, 0, 0, 0);
+void engine_call_user_update(lua_State * lState, int rate){
+        double target_fps = 1000 / (rate * 2);
+        double last_step = SDL_GetPerformanceCounter();
+	
+	lua_getglobal(lState, "update");
+	if (!lua_isfunction(lState, lua_gettop(lState))){
+	        debug_function_notfound_error("update()");
+		exit(1);
+	}
+
+	while (1) {
+		double current_time = SDL_GetPerformanceCounter();
+
+		lua_getglobal(lState, "update");
+		lua_pcall(lState, 0, 0, 0);
+
+		double delta = (last_step - current_time);
+		current_time = delta;
+		delta /= (double)SDL_GetPerformanceCounter();
+		delta *= 1000;
+		SDL_Delay(floor(target_fps - delta));
+	}
 }

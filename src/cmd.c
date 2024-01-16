@@ -8,8 +8,10 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <inttypes.h>
 #include <api/system.h>
 #include <incbin/incbin.h>
+#include <engine/base.h>
 #include <cmd.h>
 
 INCTXT(InfoJson, "src/default-project/nproj/info.json");
@@ -23,6 +25,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
         cmd_options_t result;
 	result.no_warnings = 0;
 	result.no_errors = 0;
+	result.fps_cap = 60;
 	strcpy(result.working_dir, ".");
 	struct option long_options[] = {
 		{"version",	no_argument,		0,	'v'},
@@ -31,7 +34,8 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 		{"no-errors",	no_argument,		0,	'e'},
 		{"credits",     no_argument,            0,      'c'},
 		{"dir",		required_argument,	0,	'd'},
-		{"init",        required_argument,      0,      'n'}
+		{"init",        required_argument,      0,      'n'},
+		{"fps-cap",     required_argument,      0,      'f'}
 	};
 
 	int dir_status;
@@ -39,7 +43,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 	
 	while (1){
 		int index = 0;
-		int opt = getopt_long(argc, argv, "viwecd:n:",
+		int opt = getopt_long(argc, argv, "viwecd:n:f:",
 				      long_options, &index);
 
 		if (opt == -1){
@@ -77,12 +81,14 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			result.no_warnings = 1;
 			set_debug_no_warnings(1);
 			set_system_no_warnings(1);
+			set_engine_no_warnings(1);
 			break;
 			
 		case 'e':
 			result.no_errors = 1;
 			set_debug_no_errors(1);
 			set_system_no_errors(1);
+			set_engine_no_errors(1);
 			break;
 
 		case 'c':
@@ -145,6 +151,14 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			fclose(fp);
 			debug_init_project_msg(current_dir);
 			exit(0);
+
+		case 'f':
+			int frame_rate;
+			char * endptr;
+			strncpy(arg, optarg, 255);
+			frame_rate = strtoimax(arg, &endptr, 10);
+			result.fps_cap = frame_rate;
+			break;
 			
 		case '?':
 			break;

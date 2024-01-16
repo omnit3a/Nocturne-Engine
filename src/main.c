@@ -10,13 +10,13 @@
 
 int main(int argc, char ** argv){
 	lua_State * lState;
-
-        parse_cmd_args(argc, argv);
+	cmd_options_t options;
 	
-	lState = engine_init("main.lua");
+	options = parse_cmd_args(argc, argv);
 	
+	lState = engine_init("main.lua");	
 	engine_call_user_init(lState);
-	engine_call_user_main(lState);
+	engine_call_user_update(lState, options.fps_cap);
 
 	lua_close(lState);
 	return 0;
