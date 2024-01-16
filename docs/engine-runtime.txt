@@ -23,3 +23,7 @@ List of command line arguments:
 
   "-c" or "--credits"
     > print credits for various parts of the engine
+
+  "-f" or "--fps-cap"
+    > sets the framerate cap to the value specified. value cannot be
+      lower than 11. default framerate cap is 30

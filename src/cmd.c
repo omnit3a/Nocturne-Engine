@@ -25,7 +25,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
         cmd_options_t result;
 	result.no_warnings = 0;
 	result.no_errors = 0;
-	result.fps_cap = 60;
+	result.fps_cap = 30;
 	strcpy(result.working_dir, ".");
 	struct option long_options[] = {
 		{"version",	no_argument,		0,	'v'},

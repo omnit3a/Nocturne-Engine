@@ -51,7 +51,10 @@ void engine_call_user_init(lua_State * lState){
 }
 
 void engine_call_user_update(lua_State * lState, int rate){
-        double target_fps = 1000 / (rate * 2);
+	if (rate < 11){
+		rate = 11;
+	}
+        double target_fps = 1000 / rate;
         double last_step = SDL_GetPerformanceCounter();
 	
 	lua_getglobal(lState, "update");
