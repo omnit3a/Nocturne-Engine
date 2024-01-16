@@ -11,10 +11,12 @@
 #include <incbin/incbin.h>
 #include <cmd.h>
 
-INCTXT(InfoJson, "src/default-project/info.json");
+INCTXT(InfoJson, "src/default-project/nproj/info.json");
 INCTXT_EXTERN(InfoJson);
 INCTXT(MainLua, "src/default-project/main.lua");
 INCTXT_EXTERN(MainLua);
+INCTXT(Credits, "CREDITS.txt");
+INCTXT_EXTERN(Credits);
 
 cmd_options_t parse_cmd_args(int argc, char ** argv){
         cmd_options_t result;
@@ -26,6 +28,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 		{"info",	no_argument,		0,	'i'},
 		{"no-warnings", no_argument,		0,	'w'},
 		{"no-errors",	no_argument,		0,	'e'},
+		{"credits",     no_argument,            0,      'c'},
 		{"dir",		required_argument,	0,	'd'},
 		{"init",        required_argument,      0,      'n'}
 	};
@@ -35,7 +38,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 	
 	while (1){
 		int index = 0;
-		int opt = getopt_long(argc, argv, "vd:iwen:",
+		int opt = getopt_long(argc, argv, "vd:iwecn:",
 				      long_options, &index);
 
 		if (opt == -1){
@@ -80,6 +83,10 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			set_debug_no_errors();
 			break;
 
+		case 'c':
+			printf("%s\n", gCreditsData);
+			exit(0);
+			
 		case 'n':
 			strncpy(arg, optarg, 255);
 			dir_status = chdir(arg);
@@ -134,7 +141,6 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			}
 			fprintf(fp, "%s", gMainLuaData);
 			fclose(fp);
-
 			debug_init_project_msg(current_dir);
 			exit(0);
 			

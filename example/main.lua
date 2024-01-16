@@ -14,12 +14,12 @@ function main()
       end
       
       if (is_key_held("Right")) then
-	 x = x + 1
+	 x = x + 4
 	 reshape_texture(id, x, y, 54, 54);
       end
 
       if (is_key_held("Left")) then
-	 x = x - 1
+	 x = x - 4
 	 reshape_texture(id, x, y, 54, 54);
       end
 

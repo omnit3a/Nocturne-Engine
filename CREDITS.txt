@@ -1,4 +1,6 @@
 JSON Parser Library:
  - https://github.com/cesanta/frozen
-incbin Library (Allows for embedding of text and binary files into binary):
+incbin Library (Allows for embedding of files into engine runtime):
  - https://github.com/graphitemaster/incbin
+LuaJIT:
+ - https://github.com/LuaJIT/LuaJIT

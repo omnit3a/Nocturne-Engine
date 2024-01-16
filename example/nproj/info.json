@@ -1,8 +1,8 @@
 {
-    "name": "Example Project",
-    "author": "omnit3a",
-    "short_description": "An example project for Nocturne Engine",
-    "version_string": "1.0.0",
-    "version_id": 100,
-    "completeness": 100
+    "name": "Default Project",
+    "author": "<Your name here>",
+    "short_description": "A default project for Nocturne Engine",
+    "version_string": "0.0.0",
+    "version_id": 000,
+    "completeness": 0.00
 }

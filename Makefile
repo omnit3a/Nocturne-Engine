@@ -1,6 +1,6 @@
 # tool macros
 CC = gcc
-CLIBS = -lm -llua -ldl -lSDL2 -lSDL2_ttf
+CLIBS = -lm -ldl -llua -lluajit-5.1 -lSDL2 -lSDL2_ttf
 CERROR = -Wall
 CFLAGS = $(CERROR) $(CLIBS) $(addprefix -I, $(HDR_PATH))
 LFLAGS = $(CFLAGS) -c

@@ -8,13 +8,13 @@
 #include <api/graphics.h>
 #include <cmd.h>
 
-int main(int argc, char ** argv){	
+int main(int argc, char ** argv){
 	lua_State * lState;
 
         parse_cmd_args(argc, argv);
 	
 	lState = engine_init("main.lua");
-
+	
 	engine_call_user_init(lState);
 	engine_call_user_main(lState);
 
