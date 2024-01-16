@@ -74,6 +74,6 @@ void project_print_info(project_info_t info){
 	printf("\tAuthor: %s\n", info.author);
 	printf("\tDescription: %s\n", info.short_description);
 	printf("\tVersion: %s\n", info.version_string);
-	printf("\tVersion ID: %d\n", info.version_id);
-	printf("\tCompleteness: %.2f\n", info.completeness);
+	printf("\tVersion ID: %05d\n", info.version_id);
+	printf("\tCompleteness: %%%.2f\n", info.completeness);
 }

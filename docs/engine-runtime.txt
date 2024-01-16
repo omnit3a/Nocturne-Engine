@@ -16,3 +16,7 @@ List of command line arguments:
 
   "-e" or "--no-errors"
     > do not print engine error messages (including fatal errors).
+
+  "-n" or "--init"
+    > create a default project template within the directory
+      specified by the argumentl

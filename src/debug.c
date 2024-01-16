@@ -58,6 +58,20 @@ void debug_assign_range_error(char * assignee_name){
 		assignee_name);
 }
 
+void debug_dir_notremove_error(char * path){
+	if (no_errors){
+		return;
+	}
+	fprintf(stderr, "%s: Directory could not be removed\n", path);
+}
+
+void debug_file_notremove_error(char * path){
+	if (no_errors){
+		return;
+	}
+	fprintf(stderr, "%s: File could not be removed\n", path);
+}
+
 /* Rendering related error messages */
 void debug_sdl_init_failed_error(void){
 	if (no_errors){
@@ -93,4 +107,11 @@ void debug_loading_file_msg(char * path){
 		return;
 	}
         fprintf(stdout, "%s: Loading file...\n", path);
+}
+
+void debug_init_project_msg(char * path){
+	if (no_warnings){
+		return;
+	}
+	fprintf(stdout, "%s: Initialized default project\n", path);
 }

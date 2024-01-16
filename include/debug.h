@@ -10,6 +10,8 @@ void debug_dir_notfound_error(char * path);
 void debug_file_notfound_error(char * path);
 void debug_assign_null_error(char * assignee_name);
 void debug_assign_range_error(char * assignee_name);
+void debug_dir_notremove_error(char * path);
+void debug_file_notremove_error(char * path);
 
 void debug_sdl_init_failed_error(void);
 void debug_sdl_window_failed_error(void);
@@ -17,5 +19,6 @@ void debug_sdl_renderer_failed_error(void);
 void debug_sdl_surface_failed_error(void);
 
 void debug_loading_file_msg(char * path);
+void debug_init_project_msg(char * path);
 
 #endif

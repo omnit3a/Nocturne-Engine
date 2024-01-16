@@ -1,2 +1,4 @@
 JSON Parser Library:
  - https://github.com/cesanta/frozen
+incbin Library (Allows for embedding of text and binary files into binary):
+ - https://github.com/graphitemaster/incbin
