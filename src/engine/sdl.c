@@ -156,19 +156,3 @@ Uint32 engine_get_texture_pixel(int id, int x, int y){
 	
 	return color.result;
 }
-
-void engine_set_texture_pixel(int id, int x, int y, Uint32 color){
-	engine_texture_t texture = engine_get_texture(id);
-	if (texture.texture == NULL){
-		return;
-	}
-	if (texture.surface == NULL){
-		return;
-	}
-
-	int bytes_per_pixel = texture.surface->format->BytesPerPixel;
-	int pixel_offset = y * texture.surface->pitch + x * bytes_per_pixel;
-	Uint32 * target_pixel = (Uint32 *) ((Uint8 *) texture.surface->pixels + pixel_offset);
-
-	*target_pixel = color;
-}

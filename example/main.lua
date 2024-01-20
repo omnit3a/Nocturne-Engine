@@ -5,7 +5,6 @@ function init()
    x = 0
    y = 0
    reshape_texture(id, x, y, 54, 54)
-   test = get_texture_pixel(id, 0, 0)
 end
 
 function close()
@@ -28,6 +27,6 @@ function update()
       reshape_texture(id, x, y, 54, 54);
    end
 
-   draw_offset_texture(id, 0, 0, 16, 16);   
+   draw_texture(id);   
    redraw_window()
 end
