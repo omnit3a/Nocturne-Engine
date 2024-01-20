@@ -61,17 +61,17 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			printf("Command line options:\n");
 			printf("\t`-v` or `--version`    : Print runtime version\n");
 			printf("\t`-i` or `--info`       : Print info about a project\n");
-			printf("\t                      Defaults to current directory\n");
+			printf("\t                         Defaults to current directory\n");
 			printf("\t`-w` or `--no-warnings`: Disables warning messages\n");
 			printf("\t`-e` or `--no-errors`  : Disables error messages\n");
 			printf("\t`-c` or `--credits`    : Prints credits for the engine\n");
 			printf("\t`-d` or `--dir`        : Sets the current project directory\n");
-			printf("\t                      and then continues running the engine\n");
-			printf("\t                      from that directory\n");
+			printf("\t                         and then continues running the engine\n");
+			printf("\t                         from that directory\n");
 			printf("\t`-n` or `--init`       : Creates a template project within the\n");
-			printf("\t                      directory specified by the argument\n");
+			printf("\t                         directory specified by the argument\n");
 			printf("\t`-f` or `--fps-cap`    : Sets the maximum framerate.\n");
-			printf("\t                      Defaults to 30 frames per second\n");
+			printf("\t                         Defaults to 30 frames per second\n");
 			exit(0);
 			break;
 			
