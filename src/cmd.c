@@ -180,6 +180,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			break;
 			
 		case '?':
+			exit(1);
 			break;
 
 		default:
