@@ -32,6 +32,3 @@ draw_offset_texture(id, x, y, width, height):
 reshape_texture(id, x, y, width, height):
         Sets the x and y position of the specified texture,
 	as well as how wide and how tall to draw the texture.
-
-get_texture_pixel(id, x, y):
-        Returns the hex code of the specified pixel within a texture.

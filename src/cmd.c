@@ -30,6 +30,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 	struct option long_options[] = {
 		{"version",	no_argument,		0,	'v'},
 		{"info",	no_argument,		0,	'i'},
+		{"help",	no_argument,		0,	'h'},
 		{"no-warnings", no_argument,		0,	'w'},
 		{"no-errors",	no_argument,		0,	'e'},
 		{"credits",     no_argument,            0,      'c'},
@@ -43,7 +44,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 	
 	while (1){
 		int index = 0;
-		int opt = getopt_long(argc, argv, "viwecd:n:f:",
+		int opt = getopt_long(argc, argv, "vihwecd:n:f:",
 				      long_options, &index);
 
 		if (opt == -1){
@@ -55,6 +56,24 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			printf("Runtime version: %s\n",
 			       CMD_ENGINE_VERSION);
 		        exit(0);
+
+		case 'h':
+			printf("Command line options:\n");
+			printf("\t`-v` or `--version`    : Print runtime version\n");
+			printf("\t`-i` or `--info`       : Print info about a project\n");
+			printf("\t                      Defaults to current directory\n");
+			printf("\t`-w` or `--no-warnings`: Disables warning messages\n");
+			printf("\t`-e` or `--no-errors`  : Disables error messages\n");
+			printf("\t`-c` or `--credits`    : Prints credits for the engine\n");
+			printf("\t`-d` or `--dir`        : Sets the current project directory\n");
+			printf("\t                      and then continues running the engine\n");
+			printf("\t                      from that directory\n");
+			printf("\t`-n` or `--init`       : Creates a template project within the\n");
+			printf("\t                      directory specified by the argument\n");
+			printf("\t`-f` or `--fps-cap`    : Sets the maximum framerate.\n");
+			printf("\t                      Defaults to 30 frames per second\n");
+			exit(0);
+			break;
 			
 		case 'd':
 			strncpy(arg, optarg, 255);

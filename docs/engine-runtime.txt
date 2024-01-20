@@ -4,6 +4,9 @@ List of command line arguments:
   "-v" or "--version"
     > print the engine runtime version
 
+  "-h" or "--help"
+    > prints list of command line options and what they do
+
   "-d" or "--dir"    
     > specify the project directory
 

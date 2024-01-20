@@ -31,7 +31,6 @@ int NE_create_window(lua_State * lState){
 
 int NE_redraw_window(lua_State * lState){	
 	SDL_RenderPresent(main_render_context.renderer);
-	SDL_SetRenderDrawColor(main_render_context.renderer, 0, 0, 0, 255);
 	SDL_RenderClear(main_render_context.renderer);
 	return 0;
 }
@@ -111,30 +110,6 @@ int NE_draw_offset_texture(lua_State * lState){
 	return 0;
 }
 
-/*
-  functions related to bitmap graphics
- */
-int NE_get_texture_pixel(lua_State * lState){
-	const int texture_id = (int) lua_tointeger(lState, 1);
-	const int x = (int) lua_tointeger(lState, 2);
-	const int y = (int) lua_tointeger(lState, 3);
-	engine_texture_t texture;	
-	texture = engine_get_texture(texture_id);
-	if (texture.texture == NULL){
-		return 0;
-	}
-	if (texture.surface == NULL){
-		return 0;
-	}
-
-	lua_newtable(lState);
-	
-	Uint32 pixel_data = engine_get_texture_pixel(texture_id, x+1, y+1);
-	lua_pushinteger(lState, pixel_data);
-	
-	return 1;
-}
-
 void api_register_graphics(lua_State * lState){
 	lua_register(lState, "init_renderer", NE_init_renderer);
 	lua_register(lState, "create_window", NE_create_window);
@@ -143,8 +118,7 @@ void api_register_graphics(lua_State * lState){
 	lua_register(lState, "load_bmp", NE_load_bmp);
 	lua_register(lState, "draw_texture", NE_draw_texture);
 	lua_register(lState, "reshape_texture", NE_reshape_texture);
-	lua_register(lState, "draw_offset_texture", NE_draw_offset_texture);
-	lua_register(lState, "get_texture_pixel", NE_get_texture_pixel);
+	lua_register(lState, "draw_offset_texture", NE_draw_offset_texture);	
 }
 
 engine_render_context_t api_get_render_context(void){

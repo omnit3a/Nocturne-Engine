@@ -38,6 +38,5 @@ void engine_register_texture(engine_render_context_t * context, char * path, int
 void engine_free_textures(void);
 engine_texture_t engine_get_texture(int id);
 void engine_reshape_texture(int id, int x, int y, int w, int h);
-Uint32 engine_get_texture_pixel(int id, int x, int y);
 
 #endif
