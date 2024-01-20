@@ -9,15 +9,13 @@ function close()
    os.exit()
 end
 
-function main()
-   while true do
-      -- press escape key to exit the program      
-      if is_key_held("Escape") then
-	 close_game()
-      end
-
-      -- insert main game loop here
-      
-      redraw_window()
+function update()
+   -- press escape key to exit the program      
+   if is_key_held("Escape") then
+      close_game()
    end
+   
+   -- insert main game loop here
+   
+   redraw_window()
 end
