@@ -16,7 +16,8 @@ typedef struct engine_window_s {
 typedef struct engine_render_context_s {
 	engine_window_t * window;
 	SDL_Renderer * renderer;
-	SDL_Surface * surface;	
+	SDL_Surface * surface;
+	SDL_Texture * texture;
 } engine_render_context_t;
 
 typedef struct engine_textures_s {
@@ -37,5 +38,7 @@ void engine_register_texture(engine_render_context_t * context, char * path, int
 void engine_free_textures(void);
 engine_texture_t engine_get_texture(int id);
 void engine_reshape_texture(int id, int x, int y, int w, int h);
+Uint32 engine_get_texture_pixel(int id, int x, int y);
+void engine_set_texture_pixel(int id, int x, int y, Uint32 color);
 
 #endif

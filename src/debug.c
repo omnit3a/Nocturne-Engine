@@ -22,6 +22,26 @@ void debug_arg_amount_error(int expected_args){
 		expected_args);
 }
 
+void debug_arg_wrongtype_error(char * expected_type){
+	if (debug_no_errors){
+		return;
+	}
+
+	fprintf(stderr,
+		"args: Argument of incorrect type, expecting %s\n",
+		expected_type);
+}
+
+void debug_table_wrongtype_error(char * expected_type){
+	if (debug_no_errors){
+		return;
+	}
+
+	fprintf(stderr,
+		"table: Element of incorrect type, expecting %s\n",
+		expected_type);
+}
+
 void debug_invalid_option_error(void){
 	if (debug_no_errors){
 		return;

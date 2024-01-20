@@ -9,6 +9,10 @@ create_window(title, width, height):
 redraw_window():
 	Redraws the current game window
 
+destroy_window():
+	Destroys the current window, rendering context, and all loaded
+	textures, then exits SDL2
+
 load_bmp(path, id):
 	Loads a ".bmp" image as a texture with the specified ID,
 	and returns the specified ID.
@@ -29,9 +33,5 @@ reshape_texture(id, x, y, width, height):
         Sets the x and y position of the specified texture,
 	as well as how wide and how tall to draw the texture.
 
-load_ttf(path):
-	Load the font specified by path.
-
-draw_string(string, x, y):
-        Draw the specified string at (x, y) using the font
-	previously loaded by a "load_ttf" call.
+get_texture_pixel(id, x, y):
+        Returns the hex code of the specified pixel within a texture.

@@ -5,12 +5,14 @@ function init()
    x = 0
    y = 0
    reshape_texture(id, x, y, 54, 54)
+   test = get_texture_pixel(id, 0, 0)
 end
 
 local update_no = 0
 
 function update()
    if is_key_held("Escape") then
+      destroy_window()
       os.exit()
    end
    

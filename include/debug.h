@@ -5,6 +5,8 @@ void set_debug_no_warnings(int value);
 void set_debug_no_errors(int value);
 
 void debug_arg_amount_error(int expected_args);
+void debug_arg_wrongtype_error(char * expected_type);
+void debug_table_wrongtype_error(char * expected_type);
 void debug_invalid_option_error(void);
 void debug_dir_notfound_error(char * path);
 void debug_file_notfound_error(char * path);
