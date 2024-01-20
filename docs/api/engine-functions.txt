@@ -1,0 +1,12 @@
+User Declared Engine Functions
+
+init():
+	This function is called once, when the application starts.
+	It is run before the update() function.
+
+update():
+	This function is called every frame.
+
+close():
+	This function is called by the "close_game()" function.
+	(See System API documentation)

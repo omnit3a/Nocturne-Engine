@@ -5,6 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <api/system.h>
+#include <engine/base.h>
 
 int system_no_warnings = 0;
 int system_no_errors = 0;
@@ -67,6 +68,11 @@ int NE_wait_millis(lua_State * lState){
 	return 0;
 }
 
+int NE_close_game(lua_State * lState){
+	engine_call_user_close(lState);
+	return 0;
+}
+
 void api_register_system(lua_State * lState){
 	lua_register(lState, "get_unix_time", NE_get_unix_time);
 	lua_register(lState, "get_sdl_ticks", NE_get_sdl_ticks);
@@ -75,4 +81,5 @@ void api_register_system(lua_State * lState){
 	lua_register(lState, "print_warning", NE_print_warning);
 	lua_register(lState, "print_error", NE_print_error);
 	lua_register(lState, "wait_millis", NE_wait_millis);
+	lua_register(lState, "close_game", NE_close_game);
 }

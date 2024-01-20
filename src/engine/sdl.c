@@ -101,6 +101,9 @@ void engine_free_textures(void){
 		if (textures[n].texture != NULL){
 			SDL_DestroyTexture(textures[n].texture);
 		}
+		if (textures[n].surface != NULL){
+			SDL_FreeSurface(textures[n].surface);
+		}
 	}
 
 	free(textures);

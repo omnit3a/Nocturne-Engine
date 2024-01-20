@@ -76,3 +76,12 @@ void engine_call_user_update(lua_State * lState, int rate){
 		SDL_Delay(floor(target_fps - delta));
 	}
 }
+
+void engine_call_user_close(lua_State * lState){
+	lua_getglobal(lState, "close");
+	if (!lua_isfunction(lState, lua_gettop(lState))){
+	        debug_function_notfound_error("close()");
+		exit(1);
+	}
+	lua_pcall(lState, 0, 0, 0);
+}

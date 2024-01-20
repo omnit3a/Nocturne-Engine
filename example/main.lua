@@ -8,12 +8,14 @@ function init()
    test = get_texture_pixel(id, 0, 0)
 end
 
-local update_no = 0
+function close()
+   destroy_window()
+   os.exit()
+end
 
 function update()
    if is_key_held("Escape") then
-      destroy_window()
-      os.exit()
+      close_game()
    end
    
    if is_key_held("Right") then

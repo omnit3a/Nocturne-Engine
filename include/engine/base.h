@@ -11,5 +11,6 @@ lua_State * engine_init(char * entry);
 void engine_call_user_init(lua_State * lState);
 void engine_call_user_render(lua_State * lState);
 void engine_call_user_update(lua_State * lState, int rate);
+void engine_call_user_close(lua_State * lState);
 
 #endif
