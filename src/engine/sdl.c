@@ -89,15 +89,15 @@ void engine_register_texture(engine_render_context_t * context, char * path, int
 	textures[texture_count - 1].width = 0;
 	textures[texture_count - 1].height = 0;
 	textures[texture_count - 1].texture_id = id;
-	textures = realloc(textures, sizeof(engine_texture_t) * texture_count);
+	textures = realloc(textures, sizeof(engine_texture_t) * texture_count * 2);
 	texture_count += 1;
 }
 
 void engine_free_textures(void){
 	if (textures == NULL){
 		return;
-	}
 
+	}
 	for (int n = 0 ; n < texture_count-1 ; n++){
 		if (textures[n].texture != NULL){
 			SDL_DestroyTexture(textures[n].texture);

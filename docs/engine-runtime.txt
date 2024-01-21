@@ -25,7 +25,8 @@ List of command line arguments:
       specified by the argument
 
   "-c" or "--credits"
-    > print credits for various parts of the engine
+    > print credits for a project, which are contained within
+      the project's "nproj" directory, in the "CREDITS" file.
 
   "-f" or "--fps-cap"
     > sets the framerate cap to the value specified. value cannot be

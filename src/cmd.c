@@ -13,20 +13,32 @@
 #include <incbin/incbin.h>
 #include <engine/base.h>
 #include <cmd.h>
+#include <project.h>
 
 INCTXT(InfoJson, "src/default-project/nproj/info.json");
 INCTXT_EXTERN(InfoJson);
+INCTXT(OptionsJson, "src/default-project/nproj/options.json");
+INCTXT_EXTERN(OptionsJson);
 INCTXT(MainLua, "src/default-project/main.lua");
 INCTXT_EXTERN(MainLua);
-INCTXT(Credits, "CREDITS.txt");
+INCTXT(Credits, "src/default-project/nproj/CREDITS");
 INCTXT_EXTERN(Credits);
 
 cmd_options_t parse_cmd_args(int argc, char ** argv){
+	project_options_t options;
         cmd_options_t result;
 	result.no_warnings = 0;
 	result.no_errors = 0;
-	result.fps_cap = 30;
+	result.fps_cap = 60;
 	strcpy(result.working_dir, ".");
+
+	if (access(PROJECT_OPTIONS_PATH, F_OK) == 0){
+	        options = project_load_options();
+		result.no_warnings = options.no_warnings;
+		result.no_errors = options.no_errors;
+		result.fps_cap = options.default_fps_cap;
+	}
+	
 	struct option long_options[] = {
 		{"version",	no_argument,		0,	'v'},
 		{"info",	no_argument,		0,	'i'},
@@ -64,7 +76,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			printf("\t                         Defaults to current directory\n");
 			printf("\t`-w` or `--no-warnings`: Disables warning messages\n");
 			printf("\t`-e` or `--no-errors`  : Disables error messages\n");
-			printf("\t`-c` or `--credits`    : Prints credits for the engine\n");
+			printf("\t`-c` or `--credits`    : Prints credits for a project \n");
 			printf("\t`-d` or `--dir`        : Sets the current project directory\n");
 			printf("\t                         and then continues running the engine\n");
 			printf("\t                         from that directory\n");
@@ -123,7 +135,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			char file_path[255*2];
 			dir_status = nproj != NULL;			
 			if (dir_status){
-
+				
 				while ((next_file = readdir(nproj)) != NULL){
 					sprintf(file_path, "nproj/%s", next_file->d_name);
 					remove(file_path);
@@ -161,6 +173,24 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			fprintf(fp, "%s", gInfoJsonData);
 			fclose(fp);
 
+			// copy options template
+			fp = fopen("nproj/options.json", "w");
+			if (fp == NULL){
+				debug_file_notfound_error("nproj/options.json");
+				exit(1);
+			}
+			fprintf(fp, "%s", gOptionsJsonData);
+			fclose(fp);
+
+			// copy credits template
+			fp = fopen("nproj/CREDITS", "w");
+			if (fp == NULL){
+				debug_file_notfound_error("nproj/CREDITS");
+				exit(1);
+			}
+			fprintf(fp, "%s", gCreditsData);
+			fclose(fp);
+
 			fp = fopen("main.lua", "w");
 			if (fp == NULL){
 				debug_file_notfound_error("main.lua");
@@ -169,6 +199,7 @@ cmd_options_t parse_cmd_args(int argc, char ** argv){
 			fprintf(fp, "%s", gMainLuaData);
 			fclose(fp);
 			debug_init_project_msg(current_dir);
+			
 			exit(0);
 
 		case 'f':

@@ -77,3 +77,47 @@ void project_print_info(project_info_t info){
 	printf("\tVersion ID: %05d\n", info.version_id);
 	printf("\tCompleteness: %%%.2f\n", info.completeness);
 }
+
+project_options_t project_load_options(void){
+	project_options_t options;
+	char * contents;
+	
+	if (access(PROJECT_OPTIONS_PATH, F_OK) == 0){
+		debug_loading_file_msg(PROJECT_OPTIONS_PATH);
+	} else {
+		debug_file_notfound_error(PROJECT_OPTIONS_PATH);
+		exit(1);
+	}
+
+	options.no_warnings = -1;
+	options.no_errors = -1;
+	options.default_fps_cap = -1;
+	
+	contents = json_fread(PROJECT_OPTIONS_PATH);
+	json_scanf(contents, strlen(contents),
+		   PROJECT_OPTIONS_JSON_STRING,
+		   &options.no_warnings,
+		   &options.no_errors,
+		   &options.default_fps_cap);
+	free(contents);
+
+	options.no_warnings += 256;
+	options.no_errors += 256;
+
+	if (options.no_warnings < 0){
+		debug_assign_range_error("no_warnings");
+		exit(1);
+	}
+	
+	if (options.no_errors < 0){
+		debug_assign_range_error("no_errors");
+		exit(1);
+	}
+
+	if (options.no_warnings < 0){
+		debug_assign_range_error("default_fps_cap");
+		exit(1);
+	}
+
+	return options;
+}

@@ -15,5 +15,12 @@ Project Data files:
      > Project completeness (a developer-assigned percentage which is used to
        give a rough estimate of how complete a project is)
 
+   - nproj/options.json
+     Contains default runtime options, which may be overwritten
+     with command line options.
+     > Whether or not to print warning messages
+     > Whether or not to print error messages
+     > Maximum framerate
+
 Project Source Code Tree:
   All projects within Nocturne Engine start running from "main.lua"

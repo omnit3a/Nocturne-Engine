@@ -12,7 +12,7 @@ int main(int argc, char ** argv){
 	lua_State * lState;
 	cmd_options_t options;
 	
-	options = parse_cmd_args(argc, argv);
+        options = parse_cmd_args(argc, argv);
 	
 	lState = engine_init("main.lua");	
 	engine_call_user_init(lState);
